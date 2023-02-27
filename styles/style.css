@@ -41,7 +41,8 @@ main{
 }
 
 .field label {
-    color: grey;
+    font-weight: 600;
+    color: black;
     margin-bottom: 0;
 }
 
