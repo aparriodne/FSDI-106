@@ -1,0 +1,74 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 40px;
+    background-color: grey;
+}
+
+header h1{
+    margin: 0;
+    padding: 0;
+    color: white;
+    
+}
+
+main{
+    height: calc(100% - 65px);
+    min-height: 700px;
+}
+
+.container-fluid{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#list{
+    flex:3;
+    background-color: rgb(150, 250, 150);
+    overflow: auto;
+}
+
+#form{
+    flex:2;
+    background-color: rgb(300, 0, 150);
+    padding: 25px 10px 25px 10px;
+    overflow: auto;
+}
+
+.field label {
+    color: grey;
+    margin-bottom: 0;
+}
+
+.button-container{
+    padding-top: 10px ;
+    padding-bottom: 10px;
+    text-align: center;
+    
+}
+
+#gone{
+    background-color: rgb(300, 0, 150);
+    font-weight: 700;
+}
+
+.iImportant{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.iImportant.fa-file-arrow-up{
+    color: rgb(150, 250, 150);
+}
+
+footer{
+    height: 25px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
