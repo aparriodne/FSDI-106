@@ -1,19 +1,7 @@
 var notImportant = "fa-solid fa-file-arrow-down";
 var importantIcon = "fa-solid fa-file-arrow-up";
 var isImportant = false;
-var vanish = true;
-
-function disapear(){
-
-    if(vanish) {
-        vanish = false;
-        $("#form").hide();
-    }else {
-        vanish = true;
-        $("#form").show();
-    }
-}
-
+var view = true;
 
 function toggleImportant(){
 
@@ -34,6 +22,17 @@ function toggleImportant(){
 
 }
 
+function toggleView(){
+
+    if(view) {
+        view = false;
+        $("#form").hide();
+    }else {
+        view = true;
+        $("#form").show();
+    }
+}
+
 function saveTask(){
     let title = $("#txtTitle").val();
     let desc = $("#txtDesc").val();
@@ -42,37 +41,31 @@ function saveTask(){
     let priority = $("#selPriority").val();
     let color = $("#selColor").val();
 
-    /**
-     * JS
-     * Object Literal
-     * Object constructor
-     * Class
-     */
-
     let task = new Task(isImportant, title, desc, category, dueDate, priority, color);
     console.log(task);
     displayTask(task);
-    
+    clearEntry();
 
 
 }
+
 
 function displayTask(task){
 
-let icon = "";
+    let icon = "";
 if(task.isImportant){
-    icon = `<i class = "regular ${importantIcon}" ></i>`;
+    icon = `<i class = "important ${importantIcon}" ></i>`;
 }
 else {
-    icon = `<i class = "important ${notImportant}" ></i>`;
+    icon = `<i class = "regular ${notImportant}" ></i>`;
 }
 
 let syntax = 
-`<div class= "task" style="border: solid 5px ${task.color}">
-
-${icon}
-
-        <div class="info">
+    `<div class = "task" style="border: solid 5px ${task.color}">
+    
+    ${icon}
+    
+    <div class="info">
             <h5>${task.title}</h5>
             <p>${task.description}</p>
         </div>
@@ -86,15 +79,25 @@ ${icon}
     </div>`;
 
     $("#pending-tasks").append(syntax);
+    
+    
+}
+
+function clearEntry(){
+    title = $("#txtTitle").val("");
+    desc = $("#txtDesc").val("");
+    category = $("#selCategory").val("");
+    dueDate = $("#selDueDate").val("");
+    priority = $("#selPriority").val("");
+    color = $("#selColor").val("");
 
 
 }
 
 function init(){
-    console.log("Task manager");
-
+    
     $("#formIcon").click(toggleImportant);
-    $("#gone").click(disapear);
+    $("#changeView").click(toggleView);
     $("#btnSave").click(saveTask);
 }
 
