@@ -43,6 +43,27 @@ function saveTask(){
 
     let task = new Task(isImportant, title, desc, category, dueDate, priority, color);
     console.log(task);
+
+    // here goes ajax logic
+    // try to POST response to the server
+    // the server name is http://fsdiapi.azurewebsites.net/api/tasks/
+    $.ajax({
+        type:"POST",
+        url:"http://fsdiapi.azurewebsites.net/api/tasks/",
+        
+        data: JSON.stringify(task),
+        contentType:"application/json",
+
+        success: function (res){//res in JSON string
+            console.log(res);
+        },
+        error: function (error){
+            console.log(error);
+            alert("Unexpected error");
+        }
+
+    })
+
     displayTask(task);
     clearEntry();
 
@@ -94,7 +115,47 @@ function clearEntry(){
 
 }
 
+// fetch
+function testRequest(){
+    $.ajax({
+        type: "DELETE",
+        url: "http://fsdiapi.azurewebsites.net/",
+        success: function(response){
+            console.log(response);
+        },
+        error: function (error){
+            console.log(error);
+
+        }
+
+    });
+}
+
+function loadTask(){
+
+    $.ajax({
+        type:"GET",
+        url:"http://fsdiapi.azurewebsites.net/api/tasks",
+        
+    
+
+        success: function (res){//res in JSON string
+            let data = JSON.parse(res);
+            console.log(res);
+            console.log(data);
+        },
+        error: function (error){
+            console.log(error);
+            alert("Unexpected error");
+        }
+
+    });
+
+}
+
 function init(){
+
+    loadTask();
     
     $("#formIcon").click(toggleImportant);
     $("#changeView").click(toggleView);
